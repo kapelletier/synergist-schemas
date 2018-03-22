@@ -33,7 +33,7 @@
   "definitions": {
     "SampleActivity": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "OrdinalPosition": {
           "type": "integer",
@@ -92,7 +92,7 @@
     },
     "Platform": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "OutputFormat": {
           "type": [
@@ -110,7 +110,7 @@
     "DomainBase": {
       "type": "object",
       "x-abstract": true,
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Id": {
           "type": [
@@ -154,7 +154,7 @@
     },
     "Activity": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "ActivityData": {
           "oneOf": [
@@ -194,7 +194,7 @@
     },
     "Dataset": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "allOf": [
         {
           "$ref": "#/definitions/DomainBase"
@@ -203,7 +203,7 @@
     },
     "Consumable": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "allOf": [
         {
           "$ref": "#/definitions/DomainBase"
@@ -212,7 +212,7 @@
     },
     "ActivitySubject": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "allOf": [
         {
           "$ref": "#/definitions/DomainBase"
@@ -221,7 +221,7 @@
     },
     "Pipeline": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "PipelineName": {
           "type": [
@@ -278,7 +278,7 @@
     },
     "Fileset": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Files": {
           "type": [
@@ -298,7 +298,7 @@
     },
     "FileLocation": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "FileName": {
           "type": [
@@ -330,7 +330,7 @@
     },
     "CloudTable": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "CloudProvider": {
           "type": [
@@ -353,7 +353,7 @@
     },
     "Project": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Grant": {
           "type": [
@@ -382,7 +382,7 @@
     },
     "UserGrant": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "Permission": {
           "type": [
@@ -404,7 +404,7 @@
     },
     "User": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "FirstName": {
           "type": [
@@ -467,7 +467,7 @@
     },
     "DataRequest": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "StatusDate": {
           "type": "string",
@@ -508,7 +508,7 @@
     },
     "RequestResponse": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "ResponseMessage": {
           "type": [
@@ -535,7 +535,7 @@
     },
     "Cart": {
       "type": "object",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "cartId": {
           "type": [
