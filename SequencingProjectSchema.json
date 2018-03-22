@@ -1,0 +1,568 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "SequencingProject",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "SamplesModifiedOn": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date-time"
+    },
+    "Activities": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/SampleActivity"
+      }
+    },
+    "Pipelines": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "$ref": "#/definitions/Pipeline"
+      }
+    }
+  },
+  "definitions": {
+    "SampleActivity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "OrdinalPosition": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "GroupName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "ReadCount": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "LibraryPrep": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "IsPairedEnd": {
+          "type": "boolean"
+        },
+        "StartDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "SequencingType": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Platform": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Platform"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Activity"
+        }
+      ]
+    },
+    "Platform": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "OutputFormat": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "DomainBase": {
+      "type": "object",
+      "x-abstract": true,
+      "additionalProperties": false,
+      "properties": {
+        "Id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Description": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "CreatedById": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "ModifiedById": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "CreatedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ModifiedDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ActivityData": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Dataset"
+            }
+          ]
+        },
+        "Consumables": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Consumable"
+          }
+        },
+        "Subject": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ActivitySubject"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "Dataset": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "Consumable": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "ActivitySubject": {
+      "type": "object",
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "Pipeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "PipelineName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "RunDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Status": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "InputFileset": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Fileset"
+            }
+          ]
+        },
+        "OutputFileset": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Fileset"
+            }
+          ]
+        },
+        "OutputCloudTable": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/CloudTable"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "Fileset": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Files": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/FileLocation"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/Dataset"
+        }
+      ]
+    },
+    "FileLocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FileName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "StoragePath": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "StorageService": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "IsFileInStorage": {
+          "type": "boolean"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "CloudTable": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "CloudProvider": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "TableName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "Project": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Grant": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "IsPublic": {
+          "type": "boolean"
+        },
+        "MemberGrants": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/UserGrant"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "UserGrant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Permission": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "User": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/User"
+            }
+          ]
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FirstName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "LastName": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "EmailAddress": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Phone": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "RequestsMade": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/DataRequest"
+          }
+        },
+        "Responses": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/RequestResponse"
+          }
+        },
+        "Cart": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Cart"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "DataRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "StatusDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "RequestMessage": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "RequestedData": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Dataset"
+            }
+          ]
+        },
+        "Response": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/RequestResponse"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "RequestResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "ResponseMessage": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "RequestedData": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/Dataset"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    },
+    "Cart": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cartId": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "cartItems": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/Activity"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "#/definitions/DomainBase"
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/Project"
+    }
+  ]
+}
